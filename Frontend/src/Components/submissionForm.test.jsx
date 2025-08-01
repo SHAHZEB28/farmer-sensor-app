@@ -1,5 +1,4 @@
 // frontend/src/Components/submissionForm.test.jsx
-
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import SubmissionForm from './submissionForm';
@@ -22,10 +21,5 @@ describe('SubmissionForm', () => {
 
     // Simulate clicking the submit button
     fireEvent.click(submitButton);
-
-    // We expect the success message to appear, but since the API call
-    // is asynchronous, we won't test for that here to keep it simple.
-    // We can, however, check that our callback function would have been called.
-    // Note: This part requires mocking the API, which we'll skip for speed.
   });
 });
