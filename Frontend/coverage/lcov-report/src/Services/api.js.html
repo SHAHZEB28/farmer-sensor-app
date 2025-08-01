@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">19.23% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/28</span>
+                <span class='fraction'>5/26</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">8.33% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/18</span>
+                <span class='fraction'>1/12</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">9.09% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/11</span>
+                <span class='fraction'>1/11</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">22.72% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/24</span>
+                <span class='fraction'>5/22</span>
             </div>
         
             
@@ -128,30 +128,16 @@
 <a name='L63'></a><a href='#L63'>63</a>
 <a name='L64'></a><a href='#L64'>64</a>
 <a name='L65'></a><a href='#L65'>65</a>
-<a name='L66'></a><a href='#L66'>66</a>
-<a name='L67'></a><a href='#L67'>67</a>
-<a name='L68'></a><a href='#L68'>68</a>
-<a name='L69'></a><a href='#L69'>69</a>
-<a name='L70'></a><a href='#L70'>70</a>
-<a name='L71'></a><a href='#L71'>71</a>
-<a name='L72'></a><a href='#L72'>72</a>
-<a name='L73'></a><a href='#L73'>73</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L66'></a><a href='#L66'>66</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -160,7 +146,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -200,7 +186,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -210,20 +196,13 @@
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">// frontend/src/Services/api.js
 import axios from 'axios';
 &nbsp;
-// Pick up the right baseURL depending on environment
-let baseURL;
-<span class="cstat-no" title="statement not covered" >if (typeof process !== 'undefined' &amp;&amp; process.env.JEST_WORKER_ID !== undefined) {</span>
-  // Jest test runner
-<span class="cstat-no" title="statement not covered" >  baseURL = process.env.VITE_API_BASE_URL || 'http://localhost:8000';</span>
-} else {
-  // Vite dev or production build
-<span class="cstat-no" title="statement not covered" >  baseURL = import.meta.env?.VITE_API_BASE_URL || 'http://localhost:8000';</span>
-}
+// Always use process.env here so Jest never sees import.meta
+const baseURL = process.env.VITE_API_BASE_URL || <span class="branch-1 cbranch-no" title="branch not covered" >'http://localhost:8000';</span>
 &nbsp;
-const apiClient = <span class="cstat-no" title="statement not covered" >axios.create({ baseURL });</span>
+const apiClient = axios.create({ baseURL });
 &nbsp;
-// Debug request interceptor
-<span class="cstat-no" title="statement not covered" >apiClient.interceptors.request.use(</span>
+// Request interceptor for debugging
+apiClient.interceptors.request.use(
 <span class="fstat-no" title="function not covered" >  (c</span>onfig) =&gt; {
 <span class="cstat-no" title="statement not covered" >    console.log(`Making ${config.method?.toUpperCase()} request to: ${config.url}`);</span>
 <span class="cstat-no" title="statement not covered" >    return config;</span>
@@ -231,8 +210,8 @@ const apiClient = <span class="cstat-no" title="statement not covered" >axios.cr
 <span class="fstat-no" title="function not covered" >  (e</span>rror) =&gt; <span class="cstat-no" title="statement not covered" >Promise.reject(error)</span>
 );
 &nbsp;
-// Error response interceptor
-<span class="cstat-no" title="statement not covered" >apiClient.interceptors.response.use(</span>
+// Response interceptor for error handling
+apiClient.interceptors.response.use(
 <span class="fstat-no" title="function not covered" >  (r</span>esponse) =&gt; <span class="cstat-no" title="statement not covered" >response,</span>
 <span class="fstat-no" title="function not covered" >  (e</span>rror) =&gt; {
 <span class="cstat-no" title="statement not covered" >    console.error('API Error:', error.response?.data || error.message);</span>
@@ -243,7 +222,7 @@ const apiClient = <span class="cstat-no" title="statement not covered" >axios.cr
 export default {
 <span class="fstat-no" title="function not covered" >  ge</span>tAnalytics(fieldId, sensorType, start, end) {
     const params = <span class="cstat-no" title="statement not covered" >new URLSearchParams();</span>
-<span class="cstat-no" title="statement not covered" >    if (fieldId)   <span class="cstat-no" title="statement not covered" >params.append('field_id',   fieldId);</span></span>
+<span class="cstat-no" title="statement not covered" >    if (fieldId)    <span class="cstat-no" title="statement not covered" >params.append('field_id',   fieldId);</span></span>
 <span class="cstat-no" title="statement not covered" >    if (sensorType) <span class="cstat-no" title="statement not covered" >params.append('sensor_type', sensorType);</span></span>
 <span class="cstat-no" title="statement not covered" >    if (start)      <span class="cstat-no" title="statement not covered" >params.append('start',        start.toISOString());</span></span>
 <span class="cstat-no" title="statement not covered" >    if (end)        <span class="cstat-no" title="statement not covered" >params.append('end',          end.toISOString());</span></span>
@@ -270,9 +249,9 @@ export default {
 <span class="cstat-no" title="statement not covered" >    return apiClient.get(`/api/v1/tasks/${taskId}`);</span>
   },
 &nbsp;
-  // Generic shortcuts
-<span class="fstat-no" title="function not covered" >  po</span>st(url, data) {
-<span class="cstat-no" title="statement not covered" >    return apiClient.post(url, data);</span>
+  // Generic wrappers
+  post(url, data) {
+    return apiClient.post(url, data);
   },
 &nbsp;
 <span class="fstat-no" title="function not covered" >  ge</span>t(url, config) {
@@ -286,7 +265,7 @@ export default {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-08-01T21:15:30.625Z
+                at 2025-08-01T21:24:32.895Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

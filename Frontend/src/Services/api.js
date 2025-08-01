@@ -1,19 +1,12 @@
 // frontend/src/Services/api.js
 import axios from 'axios';
 
-// Pick up the right baseURL depending on environment
-let baseURL;
-if (typeof process !== 'undefined' && process.env.JEST_WORKER_ID !== undefined) {
-  // Jest test runner
-  baseURL = process.env.VITE_API_BASE_URL || 'http://localhost:8000';
-} else {
-  // Vite dev or production build
-  baseURL = import.meta.env?.VITE_API_BASE_URL || 'http://localhost:8000';
-}
+// Always use process.env here so Jest never sees import.meta
+const baseURL = process.env.VITE_API_BASE_URL || 'http://localhost:8000';
 
 const apiClient = axios.create({ baseURL });
 
-// Debug request interceptor
+// Request interceptor for debugging
 apiClient.interceptors.request.use(
   (config) => {
     console.log(`Making ${config.method?.toUpperCase()} request to: ${config.url}`);
@@ -22,7 +15,7 @@ apiClient.interceptors.request.use(
   (error) => Promise.reject(error)
 );
 
-// Error response interceptor
+// Response interceptor for error handling
 apiClient.interceptors.response.use(
   (response) => response,
   (error) => {
@@ -34,7 +27,7 @@ apiClient.interceptors.response.use(
 export default {
   getAnalytics(fieldId, sensorType, start, end) {
     const params = new URLSearchParams();
-    if (fieldId)   params.append('field_id',   fieldId);
+    if (fieldId)    params.append('field_id',   fieldId);
     if (sensorType) params.append('sensor_type', sensorType);
     if (start)      params.append('start',        start.toISOString());
     if (end)        params.append('end',          end.toISOString());
@@ -61,7 +54,7 @@ export default {
     return apiClient.get(`/api/v1/tasks/${taskId}`);
   },
 
-  // Generic shortcuts
+  // Generic wrappers
   post(url, data) {
     return apiClient.post(url, data);
   },
