@@ -1,6 +1,10 @@
+<div align="center">
+
 # Field Insights Dashboard 🌾
 
-![CI Pipeline](https://github.com/<YourGitHubUsername>/<YourRepoName>/actions/workflows/ci.yml/badge.svg)
+</div>
+
+![CI Pipeline](https://github.com/SHAHZEB28/farmer-sensor-app/actions/workflows/ci.yml/badge.svg)
 
 An interactive, full-stack web application designed to ingest, process, and analyze farm sensor data. This project allows users to submit sensor readings (e.g., soil moisture, temperature) via a REST API or a bulk CSV file upload, processes large files asynchronously, and displays real-time analytics on a modern, responsive UI.
 
@@ -45,8 +49,8 @@ This project was built to meet and exceed the requirements of the **Carbonleap F
 
 1.  **Clone the repository:**
     ```bash
-    git clone <your-repo-url>
-    cd <repo-name>
+    git clone [https://github.com/SHAHZEB28/farmer-sensor-app.git](https://github.com/SHAHZEB28/farmer-sensor-app.git)
+    cd farmer-sensor-app
     ```
 
 2.  **Start all services with Docker Compose:**
@@ -74,21 +78,3 @@ This project was built to meet and exceed the requirements of the **Carbonleap F
 Ensure the Docker containers are running, then in a new terminal, run:
 ```bash
 docker compose exec api pytest
-
-Frontend Tests
-
-Navigate to the Frontend directory and run:
-
-npm test
-
-📊 Data Generation for Submission
-
-As per the assignment requirements, a large dataset was generated to realistically evaluate the asynchronous processing capabilities of the application.
-
-File: final_dataset.csv (included in the repository root)
-
-Record Count: 500
-
-Method: The dataset was generated to simulate realistic sensor readings over several hours for two different fields. It includes both temperature and soil moisture data with timestamps formatted in ISO 8601. This allows for a comprehensive test of the bulk CSV upload, background processing, and data visualization features.
-
-</markdown>
