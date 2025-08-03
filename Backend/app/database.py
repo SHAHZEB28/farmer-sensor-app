@@ -3,7 +3,6 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 
-# Use DATABASE_URL env var if set; otherwise default to in-memory SQLite for tests
 DATABASE_URL = os.getenv(
     "DATABASE_URL",
     "sqlite:///:memory:"

@@ -1,4 +1,3 @@
-# backend/app/crud.py
 
 from sqlalchemy.orm import Session
 from sqlalchemy import func
@@ -15,7 +14,6 @@ def get_sensor_readings(db: Session, skip: int = 0, limit: int = 100):
 
 def create_sensor_reading(db: Session, reading: schemas.SensorReadingCreate):
     """Create a new sensor reading record in the database."""
-    # This is the function that was missing.
     db_reading = models.SensorReading(
         field_id=reading.field_id,
         sensor_type=reading.sensor_type,

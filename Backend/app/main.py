@@ -1,5 +1,3 @@
-# backend/app/main.py (Final Chart Precision Fix)
-
 import os
 import datetime
 import csv
@@ -27,7 +25,6 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# --- API ROUTES ---
 
 @app.get("/api/v1/readings/chart", tags=["readings"])
 def get_chart_data(
@@ -43,7 +40,6 @@ def get_chart_data(
 
     combined_data: Dict[str, Dict] = {}
 
-    # THE FIX: Use the full timestamp as the key to ensure uniqueness
     for ts, value in temp_readings:
         time_key = ts.isoformat()
         if time_key not in combined_data:
@@ -59,14 +55,12 @@ def get_chart_data(
     if not combined_data:
         return []
 
-    # Sort by the full timestamp key to ensure correct order
     sorted_keys = sorted(combined_data.keys())
     sorted_chart_data = [combined_data[key] for key in sorted_keys]
     
     return sorted_chart_data
 
 
-# ... (keep all other endpoints)
 @app.post("/api/v1/sensors/bulk", tags=["sensors"])
 async def create_bulk_sensor_readings(
     file: UploadFile = File(...), db: Session = Depends(database.get_db)

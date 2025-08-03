@@ -1,4 +1,3 @@
-# backend/app/routers/sensors.py
 import datetime
 import csv
 import io

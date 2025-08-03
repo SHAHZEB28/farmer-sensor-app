@@ -1,5 +1,3 @@
-# worker/tasks.py
-
 from celery_app import celery_app
 from sqlalchemy import create_engine, func
 from sqlalchemy.orm import sessionmaker
@@ -8,8 +6,6 @@ import csv
 import io
 from datetime import datetime, timedelta
 
-# In a larger project, models and schemas would be in a shared library.
-# For this project, we redefine them to ensure the worker is self-contained.
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, Integer, String, Float, DateTime, ForeignKey
 from pantic import BaseModel
@@ -48,12 +44,11 @@ class SensorReadingCreate(BaseModel):
     unit: str
     timestamp: datetime = None
 
-# --- Database Connection ---
 SQLALCHEMY_DATABASE_URL = os.getenv("DATABASE_URL", "postgresql://user:password@db/field_insights_db")
 engine = create_engine(SQLALCHEMY_DATABASE_URL)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
-# --- Celery Tasks ---
+
 
 @celery_app.task(bind=True)
 def process_csv_file(self, csv_content: str):
@@ -135,10 +130,9 @@ def process_hourly_analytics():
     finally:
         db.close()
 
-# Schedule the hourly analytics task
 celery_app.conf.beat_schedule = {
     'run-hourly-analytics-every-hour': {
         'task': 'tasks.process_hourly_analytics',
-        'schedule': 3600.0, # Run every hour
+        'schedule': 3600.0, 
     },
 }

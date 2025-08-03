@@ -70,13 +70,11 @@ const SubmissionForm = ({ onNewData }) => {
 
       setMessage('Data submitted successfully!');
       
-      // Clear success message after 3 seconds
       setTimeout(() => setMessage(''), 3000);
     } catch (error) {
       console.error('Error submitting data:', error);
       setMessage('Failed to submit data. Please try again.');
       
-      // Clear error message after 5 seconds
       setTimeout(() => setMessage(''), 5000);
     }
   };
@@ -156,7 +154,6 @@ const SubmissionForm = ({ onNewData }) => {
         </div>
         
         <div className="mt-6">
-          {/* USE THE ANIMATED BUTTON */}
           <AnimatedButton type="submit" className="w-full">
             Submit
           </AnimatedButton>

@@ -8,5 +8,4 @@ RUN pip install --no-cache-dir --upgrade -r /worker_code/requirements.txt
 
 COPY . /worker_code/
 
-# Command to run the Celery worker
 CMD ["celery", "-A", "worker.celery_app", "worker", "--loglevel=info"]

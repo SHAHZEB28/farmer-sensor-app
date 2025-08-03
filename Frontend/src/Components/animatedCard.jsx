@@ -1,4 +1,3 @@
-// frontend/src/Components/AnimatedCard.jsx
 
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
@@ -8,7 +7,7 @@ const AnimatedCard = ({ children, className = '', reducedMotion = false }) => {
   const isInView = useInView(ref, { once: true, amount: 0.3 });
 
   const cardVariants = {
-    // If reduced motion is on, don't slide up (y: 0)
+   
     hidden: { opacity: 0, y: reducedMotion ? 0 : 20 },
     visible: { 
       opacity: 1, 

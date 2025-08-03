@@ -1,4 +1,3 @@
-// frontend/src/Components/SkeletonLoader.jsx
 
 import React from 'react';
 
@@ -11,5 +10,4 @@ const SkeletonLoader = ({ className = '' }) => {
   );
 };
 
-// THE FIX: Add the missing export default line
 export default SkeletonLoader;

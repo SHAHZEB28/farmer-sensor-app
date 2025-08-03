@@ -1,10 +1,8 @@
-# backend/tests/test_api.py
 
 from fastapi.testclient import TestClient
 import os
-import pytest # Import pytest to use its features
+import pytest 
 
-# The 'client' fixture is automatically provided by conftest.py
 def test_create_sensor_reading(client: TestClient):
     """
     Test creating a single sensor reading.
@@ -53,7 +51,6 @@ def test_bulk_upload_csv(client: TestClient):
     """
     csv_content = "field_id,sensor_type,value,unit\n1,temperature,22,C\n1,soil_moisture,60,%"
     
-    # Use an in-memory file instead of writing to disk
     from io import BytesIO
     file_content = BytesIO(csv_content.encode('utf-8'))
     
@@ -65,8 +62,6 @@ def test_bulk_upload_csv(client: TestClient):
     assert response.status_code == 200
     assert response.json() == {"message": "Successfully ingested 2 readings from CSV."}
 
-    # Verify the data was added
     analytics_response = client.get("/api/v1/analytics?field_id=1&sensor_type=temperature")
     assert analytics_response.status_code == 200
-    # THE FIX: The count will now correctly be 1 because the database is clean for this test.
     assert analytics_response.json()["count"] == 1

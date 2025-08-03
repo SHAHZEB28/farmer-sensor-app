@@ -1,4 +1,3 @@
-// frontend/src/Components/BulkUpload.jsx
 import React, { useState, useRef } from 'react';
 import api from '../Services/api';
 import toast from 'react-hot-toast';
@@ -31,7 +30,7 @@ const BulkUpload = ({ onNewData }) => {
         clearInterval(interval);
         toast.error('Could not get task status.', { id: taskId });
       }
-    }, 2000); // Check every 2 seconds
+    }, 2000);
   };
 
   const handleUpload = async () => {

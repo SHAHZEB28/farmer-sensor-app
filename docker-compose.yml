@@ -1,4 +1,3 @@
-# docker-compose.yml
 
 services:
   api:
@@ -7,7 +6,7 @@ services:
     command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
     volumes:
       - ./Backend/app:/code/app
-      - ./Backend/tests:/code/tests # <-- THE CRUCIAL FIX: Mount the tests folder
+      - ./Backend/tests:/code/tests 
     ports:
       - "8000:8000"
     environment:

@@ -1,4 +1,3 @@
-// frontend/jest.config.cjs
 module.exports = {
   testEnvironment: 'jsdom',
   setupFilesAfterEnv: [

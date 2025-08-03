@@ -1,4 +1,3 @@
-# worker/celery_app.py
 
 from celery import Celery
 import os
@@ -9,7 +8,7 @@ celery_app = Celery(
     "tasks",
     broker=redis_url,
     backend=redis_url,
-    include=["tasks"] # <-- Changed from "worker.tasks" to just "tasks"
+    include=["tasks"] 
 )
 
 celery_app.conf.update(

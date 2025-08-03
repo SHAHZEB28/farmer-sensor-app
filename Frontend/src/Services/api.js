@@ -1,12 +1,9 @@
-// frontend/src/Services/api.js
 import axios from 'axios';
 
-// Always use process.env here so Jest never sees import.meta
 const baseURL = process.env.VITE_API_BASE_URL || 'http://localhost:8000';
 
 const apiClient = axios.create({ baseURL });
 
-// Request interceptor for debugging
 apiClient.interceptors.request.use(
   (config) => {
     console.log(`Making ${config.method?.toUpperCase()} request to: ${config.url}`);
@@ -15,7 +12,6 @@ apiClient.interceptors.request.use(
   (error) => Promise.reject(error)
 );
 
-// Response interceptor for error handling
 apiClient.interceptors.response.use(
   (response) => response,
   (error) => {
